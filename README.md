@@ -23,7 +23,7 @@ payload = {
   }, 
   "record": {
     "id": "", 
-    "record_type": "items", 
+    "record_type": "customers", 
     "fields": []
    }
 }
@@ -45,19 +45,10 @@ The above request will return a response like below.
 
 ```python
 {
-  "uid": 2,
-  "user_context": {
-    "lang": "en_US",
-    "tz": "Europe/Brussels",
-    "uid": 2
-  },
-  "company_id": 1,
-  "company_ids": [
-    1
-  ],
-  "partner_id": 3,
-  "access_token": "access_token_ebb1914bbdb5622cd782a1a0ff51f81a2cba042a",
-  "expires_in": "31536000"
+  "list_data": [{"id": "customers", "data": ['C001','C002','C003']}], 
+  "id_erp": null, 
+  "code": "0", 
+  "message": null
 }
 ```
 The most interesting part of the response is the access token field, *access_token_ebb1914bbdb5622cd782a1a0ff51f81a2cba042a* for every other request the token should to be send along the request headers else an invalid token response will be generated.
