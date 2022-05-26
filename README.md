@@ -297,7 +297,7 @@ en el llamado del siguiente metodo.
 }
 ```
 
-## GET /item
+## GET /listprice
 El metodo retorna una lista de articulos y su precio. Recibe como parametro un codigo de lista precios para filtrar el resultado
 
 **Ejemplo Python request**
@@ -346,8 +346,6 @@ Como respuesta se obtiene el listado de articulos con su precio.
 ```
 
 
-
-
 # IMPORTACION DE RESUMEN DE ESTADO DE CUENTA DE CLIENTE 
 
 - GET /customer/balance 
@@ -394,6 +392,125 @@ Como respuesta se obtiene la informacion de la deuda y limite de credito del cli
      ]
     }], 
   "id_erp": "", 
+  "code": "0", 
+  "message": null
+}
+```
+
+
+# ENVIO DE ORDEN DE VENTA Y FACTURA
+
+- POST /transaction 
+
+## POST /transaction 
+El metodo retorna la informacion de la deuda y limite de credito del cliente.
+Para saber si es una factura o una orde de venta se debe leer el campo  >> "record_type" enviado como parametro en la peticion.
+el cual puede tener los siguiente valores: 
+  "saleorder"
+  "invoice"
+
+**Ejmplo Python request**
+
+```python
+import requests
+
+url = "/api/transaction"
+
+payload = {
+  "credentials": {
+    "user": "userapi", 
+    "password": "pass_api"
+  }, 
+  "record": {
+   "id":"S00008",
+   "record_type":"saleorder",
+   "fields":[
+      {
+         "name":"CardCode",
+         "value":"CL1039"
+      },
+      {
+         "name":"NumAtCard",
+         "value":"S00008"
+      },
+      {
+         "name":"Comments",
+         "value":"S00008"
+      },
+      {
+         "name":"DocDate",
+         "value":"2022-05-26"
+      },
+      {
+         "name":"DocTotal",
+         "value":207.0
+      },
+      {
+         "name":"ShipToCode",
+         "value":"Movilway-Entrega"
+      }
+   ],
+   "sublists":[
+      {
+         "sublist_id":"items",
+         "lines":[
+            {
+               "line_id":"items_21",
+               "fields":[
+                  {
+                     "name":"ItemCode",
+                     "value":"SER0032"
+                  },
+                  {
+                     "name":"Quantity",
+                     "value":1.0,
+                     "type":"float"
+                  },
+                  {
+                     "name":"Price",
+                     "value":180.0,
+                     "type":"float"
+                  },
+                  {
+                     "name":"WhsCode",
+                     "value":"01"
+                  },
+                  {
+                     "name":"DiscPrcnt",
+                     "value":0.0,
+                     "type":"float"
+                  },
+                  {
+                     "name":"TaxCode",
+                     "value":"IVA"
+                  }
+               ]
+            }
+         ]
+      }
+   ]
+}
+  
+}
+
+headers = {
+    'content-type': "application/json" 
+}
+
+response = requests.request("POST", url, data=payload, headers=headers)
+
+print(response.text)
+```
+Como respuesta se obtiene un id unico de la base de datos el cual sera actualizado en Odoo para dejar trazavilidad
+
+**Ejemplo Respuesta en JSON**
+```python
+{
+  "list_data": [{
+    "id": "stock", 
+    "data": []
+    }], 
+  "id_erp": "34567", 
   "code": "0", 
   "message": null
 }
