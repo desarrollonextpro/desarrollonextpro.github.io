@@ -1,9 +1,10 @@
 # API PARA NEXTCONNECTOR
+El siguiente documento pretende detallar las APIS que tiene el NextConnector del lado de SAP para la comunicacion con Odoo.
 
 # IMPORTACION DE CLIENTES 
 
-- GET customers 
-- GET customer
+- GET /customers 
+- GET /customer
 
 ## GET /customers
 El metodo retorna el listado de clientes que hay que importar a Odoo
@@ -99,8 +100,8 @@ Como respuesta se obtiene los campos del cliente que deben ser registrados en el
 
 # IMPORTACION DE ARTICULOS 
 
-- GET items 
-- GET item
+- GET /items 
+- GET /item
 
 ## GET /items
 El metodo retorna el listado de articulos que hay que importar a Odoo
@@ -180,7 +181,7 @@ Como respuesta se obtiene los campos del articulo que deben ser registrados en O
 ```python
 {
   "list_data": [{
-    "id": "customer", 
+    "id": "item", 
     "data": [
       {"code":"SKU001", "name":"PC DELL", "price":100, "category":"computers"}
      ]
@@ -195,9 +196,9 @@ Como respuesta se obtiene los campos del articulo que deben ser registrados en O
 
 # IMPORTACION DE STOCK 
 
-- GET stock 
+- GET /stock 
 
-## GET /items
+## GET /stock
 El metodo retorna el lista de articulos con su cantidad de stock disponible
 
 **Ejmplo Python request**
@@ -248,10 +249,10 @@ Como respuesta se obtiene un listado de codigos de articulos con su cantidad de 
 
 
 
-# IMPORTACION DE LISTA DE PRECIOS
+# IMPORTACION DE LISTAS DE PRECIOS
 
-- GET listprices 
-- GET listprice
+- GET /listprices 
+- GET /listprice
 
 ## GET /listprices
 El metodo retorna el listado de listas de precios a sincronizar en Odoo
@@ -345,3 +346,55 @@ Como respuesta se obtiene el listado de articulos con su precio.
 ```
 
 
+
+
+# IMPORTACION DE RESUMEN DE ESTADO DE CUENTA DE CLIENTE 
+
+- GET /customer/balance 
+
+## GET /customer/balance 
+El metodo retorna la informacion de la deuda y limite de credito del cliente.
+
+**Ejmplo Python request**
+
+```python
+import requests
+
+url = "/api/customer/balance"
+
+payload = {
+  "credentials": {
+    "user": "userapi", 
+    "password": "pass_api"
+  }, 
+  "record": {
+    "id": "C001", 
+    "record_type": "balance", 
+    "fields": []
+   }
+}
+
+headers = {
+    'content-type': "application/json" 
+}
+
+response = requests.request("GET", url, data=payload, headers=headers)
+
+print(response.text)
+```
+Como respuesta se obtiene la informacion de la deuda y limite de credito del cliente.
+
+**Ejemplo Respuesta en JSON**
+```python
+{
+  "list_data": [{
+    "id": "stock", 
+    "data": [
+      {"credilimit":100, "balance":60, "dueblance":30}
+     ]
+    }], 
+  "id_erp": "", 
+  "code": "0", 
+  "message": null
+}
+```
