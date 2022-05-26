@@ -8,34 +8,29 @@ session cookies in a regular web language. The token will **be needed** for ever
 Except for */api/auth/token* enpoint that accept **multipart/form-data** as the Content type every other 
 endpoints accept application/json as the 'Content Type'
 
-# REQUEST ACCESS TOKEN
-
-```bash
-curl --request GET 
-  --url http://192.168.43.58:8069/api/auth/token 
-  --form db=api.ng 
-  --form login=admin 
-  --form password=admin
-```
-
 Python request
 
 
 ```python
 import requests
 
-url = "http://192.168.43.58:8069/api/auth/token"
+url = "/api/records/customers"
 
 payload = {
-  "db":"api.ng", 
-  "login": "admin", 
-  "password": "admin"
+  "credentials": {
+    "user": "userapi", 
+    "password": "pass_api"
+  }, 
+  "record": {
+    "id": "", 
+    "record_type": "items", 
+    "fields": []
+   }
 }
 
 headers = {
-    'content-type': "multipart/form-data; 
-    'access-token': "access_token_ebb1914bbdb5622cd782a1a0ff51f81a2cba042a"
-    }
+    'content-type': "application/json" 
+}
 
 response = requests.request("GET", url, data=payload, headers=headers)
 
