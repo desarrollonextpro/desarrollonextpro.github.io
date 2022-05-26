@@ -584,3 +584,58 @@ Como respuesta se obtiene un id unico de la base de datos el cual sera actualiza
 }
 ```
 
+
+# IMPORTACION ESTA DE DESPACHO DE ORDEN DE VENTA
+
+- GET /transaction/status/shipping 
+
+## GET /transaction/status/shipping 
+El metodo retorna el estado de despacho de una orden de venta enviado como parametro en el body.
+Sed espera recibir las siguientes opciones
+  - pending
+  - delivery_partial
+  - delivery
+
+**Ejmplo Python request**
+
+```python
+import requests
+
+url = "/api/transaction/status/shipping"
+
+payload = {
+  "credentials": {
+    "user": "userapi", 
+    "password": "pass_api"
+  }, 
+  "record": {
+    "id": "444567", 
+    "record_type": "status_shipping", 
+    "fields": []
+   }
+}
+
+headers = {
+    'content-type': "application/json" 
+}
+
+response = requests.request("GET", url, data=payload, headers=headers)
+
+print(response.text)
+```
+Como respuesta se obtiene el estado de despacho de la orden de venta.
+
+**Ejemplo Respuesta en JSON**
+```python
+{
+  "list_data": [{
+    "id": "444567", 
+    "data": [
+      {"status_shipping":"pending"}
+     ]
+    }], 
+  "id_erp": "444567", 
+  "code": "0", 
+  "message": null
+}
+```
