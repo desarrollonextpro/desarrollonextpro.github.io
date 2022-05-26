@@ -1,7 +1,7 @@
 # API PARA NEXTCONNECTOR
 El siguiente documento pretende detallar las APIS que tiene el NextConnector del lado de SAP para la comunicación con Odoo.
 
-# IMPORTACION DE CLIENTES 
+# CLIENTES 
 
 - GET /customers 
 - GET /customer
@@ -98,7 +98,7 @@ Como respuesta se obtiene los campos del cliente que deben ser registrados en el
 
 
 
-# IMPORTACION DE ARTICULOS 
+# ARTICULOS 
 
 - GET /items 
 - GET /item
@@ -194,7 +194,7 @@ Como respuesta se obtiene los campos del articulo que deben ser registrados en O
 
 
 
-# IMPORTACION DE STOCK 
+# STOCK 
 
 - GET /stock 
 
@@ -249,7 +249,7 @@ Como respuesta se obtiene un listado de códigos de artículos con su cantidad d
 
 
 
-# IMPORTACION DE LISTAS DE PRECIOS
+# LISTAS DE PRECIOS
 
 - GET /listprices 
 - GET /listprice
@@ -346,7 +346,7 @@ Como respuesta se obtiene el listado de artículos con su precio.
 ```
 
 
-# IMPORTACION DE RESUMEN DE ESTADO DE CUENTA DE CLIENTE 
+# RESUMEN ESTADO DE CUENTA 
 
 - GET /customer/balance 
 
@@ -579,7 +579,7 @@ Si el cliente se esta creando por primera vez no se envía el campo "id", en cas
 }
 ```
 
-# ENVIO DE ORDEN DE VENTA Y FACTURA
+# ENVIO DE PEDIDO Y FACTURA
 
 - POST /transaction 
 
@@ -694,7 +694,7 @@ Como respuesta se obtiene un id único de la base de datos el cual sera actualiz
 ```
 
 
-# ENVIO DE PAGO DE CLIENTE
+# ENVIO DE PAGO
 
 - POST /payment 
 
@@ -766,7 +766,7 @@ Como respuesta se obtiene un id único de la base de datos el cual sera actualiz
 ```
 
 
-# IMPORTACION ESTADO DE DESPACHO DE ORDEN DE VENTA
+# ESTADO DE DESPACHO DE PEDIDO
 
 - GET /transaction/status/shipping 
 
@@ -822,7 +822,7 @@ Como respuesta se obtiene el estado de despacho de la orden de venta.
 ```
 
 
-# IMPORTACION DE FACTURAS Y NOTAS DE CREDITO
+# FACTURAS Y NOTAS DE CREDITO
 
 - GET /transactions 
 - GET /transaction
