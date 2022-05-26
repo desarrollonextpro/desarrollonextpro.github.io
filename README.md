@@ -766,7 +766,7 @@ Como respuesta se obtiene un id único de la base de datos el cual sera actualiz
 ```
 
 
-# IMPORTACION ESTA DE DESPACHO DE ORDEN DE VENTA
+# IMPORTACION ESTADO DE DESPACHO DE ORDEN DE VENTA
 
 - GET /transaction/status/shipping 
 
