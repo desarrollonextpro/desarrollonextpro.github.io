@@ -3,7 +3,7 @@
 - GET customers 
 - GET customer
 
-##GET customers
+## GET customers
 El metodo retorna el listado de clientes que hay que importar a Odoo
 
 Python request
