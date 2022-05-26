@@ -1,5 +1,5 @@
 # API PARA NEXTCONNECTOR
-El siguiente documento pretende detallar las APIS que tiene el NextConnector del lado de SAP para la comunicacion con Odoo.
+El siguiente documento pretende detallar las APIS que tiene el NextConnector del lado de SAP para la comunicación con Odoo.
 
 # IMPORTACION DE CLIENTES 
 
@@ -7,9 +7,9 @@ El siguiente documento pretende detallar las APIS que tiene el NextConnector del
 - GET /customer
 
 ## GET /customers
-El metodo retorna el listado de clientes que hay que importar a Odoo
+El método retorna el listado de clientes que hay que importar a Odoo
 
-**Ejmplo Python request**
+**Ejemplo Python request**
 
 ```python
 import requests
@@ -36,8 +36,8 @@ response = requests.request("GET", url, data=payload, headers=headers)
 
 print(response.text)
 ```
-Como respuesta se obtiene un listado de codigos de clientes por sincronizar a Odoo, estos codigos seran utilizados 
-en el llamado del siguiente metodo. 
+Como respuesta se obtiene un listado de códigos de clientes por sincronizar a Odoo, estos códigos serán utilizados 
+en el llamado del siguiente método. 
 
 **Ejemplo Respuesta en JSON**
 ```python
@@ -50,7 +50,7 @@ en el llamado del siguiente metodo.
 ```
 
 ## GET /customer
-El metodo retorna los datos/campos de un cliente especifico que se envie como parametro en el body.
+El método retorna los datos/campos de un cliente especifico que se envíen como parámetro en el body.
 
 **Ejemplo Python request**
 ```python
@@ -104,9 +104,9 @@ Como respuesta se obtiene los campos del cliente que deben ser registrados en el
 - GET /item
 
 ## GET /items
-El metodo retorna el listado de articulos que hay que importar a Odoo
+El método retorna el listado de artículos que hay que importar a Odoo
 
-**Ejmplo Python request**
+**Ejemplo Python request**
 
 ```python
 import requests
@@ -133,8 +133,8 @@ response = requests.request("GET", url, data=payload, headers=headers)
 
 print(response.text)
 ```
-Como respuesta se obtiene un listado de codigos de articulos por sincronizar a Odoo, estos codigos seran utilizados 
-en el llamado del siguiente metodo. 
+Como respuesta se obtiene un listado de códigos de artículos por sincronizar a Odoo, estos códigos serán utilizados 
+en el llamado del siguiente método. 
 
 **Ejemplo Respuesta en JSON**
 ```python
@@ -147,7 +147,7 @@ en el llamado del siguiente metodo.
 ```
 
 ## GET /item
-El metodo retorna los datos/campos de un articulos especifico que se envie como parametro en el body.
+El método retorna los datos/campos de un artículos especifico que se envíen como parámetro en el body.
 
 **Ejemplo Python request**
 ```python
@@ -199,9 +199,9 @@ Como respuesta se obtiene los campos del articulo que deben ser registrados en O
 - GET /stock 
 
 ## GET /stock
-El metodo retorna el lista de articulos con su cantidad de stock disponible
+El método retorna el lista de artículos con su cantidad de stock disponible
 
-**Ejmplo Python request**
+**Ejemplo Python request**
 
 ```python
 import requests
@@ -228,7 +228,7 @@ response = requests.request("GET", url, data=payload, headers=headers)
 
 print(response.text)
 ```
-Como respuesta se obtiene un listado de codigos de articulos con su cantidad de stock disponible.
+Como respuesta se obtiene un listado de códigos de artículos con su cantidad de stock disponible.
 
 **Ejemplo Respuesta en JSON**
 ```python
@@ -255,9 +255,9 @@ Como respuesta se obtiene un listado de codigos de articulos con su cantidad de 
 - GET /listprice
 
 ## GET /listprices
-El metodo retorna el listado de listas de precios a sincronizar en Odoo
+El método retorna el listado de listas de precios a sincronizar en Odoo
 
-**Ejmplo Python request**
+**Ejemplo Python request**
 
 ```python
 import requests
@@ -284,8 +284,8 @@ response = requests.request("GET", url, data=payload, headers=headers)
 
 print(response.text)
 ```
-Como respuesta se obtiene un listado de listas de precios por sincronizar a Odoo, estos codigos seran utilizados 
-en el llamado del siguiente metodo. 
+Como respuesta se obtiene un listado de listas de precios por sincronizar a Odoo, estos códigos serán utilizados 
+en el llamado del siguiente método. 
 
 **Ejemplo Respuesta en JSON**
 ```python
@@ -298,7 +298,7 @@ en el llamado del siguiente metodo.
 ```
 
 ## GET /listprice
-El metodo retorna una lista de articulos y su precio. Recibe como parametro un codigo de lista precios para filtrar el resultado
+El método retorna una lista de artículos y su precio. Recibe como parámetro un código de lista precios para filtrar el resultado
 
 **Ejemplo Python request**
 ```python
@@ -326,7 +326,7 @@ response = requests.request("GET", url, data=payload, headers=headers)
 
 print(response.text)
 ```
-Como respuesta se obtiene el listado de articulos con su precio. 
+Como respuesta se obtiene el listado de artículos con su precio. 
 
 **Ejemplo Respuesta en JSON**
 ```python
@@ -351,9 +351,9 @@ Como respuesta se obtiene el listado de articulos con su precio.
 - GET /customer/balance 
 
 ## GET /customer/balance 
-El metodo retorna la informacion de la deuda y limite de credito del cliente.
+El método retorna la información de la deuda y limite de crédito del cliente.
 
-**Ejmplo Python request**
+**Ejemplo Python request**
 
 ```python
 import requests
@@ -380,7 +380,7 @@ response = requests.request("GET", url, data=payload, headers=headers)
 
 print(response.text)
 ```
-Como respuesta se obtiene la informacion de la deuda y limite de credito del cliente.
+Como respuesta se obtiene la información de la deuda y limite de crédito del cliente.
 
 **Ejemplo Respuesta en JSON**
 ```python
@@ -403,13 +403,13 @@ Como respuesta se obtiene la informacion de la deuda y limite de credito del cli
 - POST /transaction 
 
 ## POST /transaction 
-El metodo recibe una estructura JSON de cabecera/detalle para enviar los datos necesarios para crear una transaccion comercial en SAP.
-Para saber si lo que se envia es una factura o una orden de venta se debe leer el campo  >> "record_type" enviado como parametro en la peticion.
+El método recibe una estructura JSON de cabecera/detalle para enviar los datos necesarios para crear una transacción comercial en SAP.
+Para saber si lo que se envía es una factura o una orden de venta se debe leer el campo  >> "record_type" enviado como parámetro en la petición.
 el cual puede tener los siguiente valores: 
   "saleorder"
   "invoice"
 
-**Ejmplo Python request**
+**Ejemplo Python request**
 
 ```python
 import requests
@@ -501,7 +501,7 @@ response = requests.request("POST", url, data=payload, headers=headers)
 
 print(response.text)
 ```
-Como respuesta se obtiene un id unico de la base de datos el cual sera actualizado en Odoo para dejar trazavilidad
+Como respuesta se obtiene un id único de la base de datos el cual sera actualizado en Odoo para dejar trazabilidad
 
 **Ejemplo Respuesta en JSON**
 ```python
@@ -518,9 +518,9 @@ Como respuesta se obtiene un id unico de la base de datos el cual sera actualiza
 - POST /payment 
 
 ## POST /payment 
-El metodo recibe una estructura JSON de cabecera para enviar los datos necesarios para crear una transaccion de pago en SAP.
+El método recibe una estructura JSON de cabecera para enviar los datos necesarios para crear una transacción de pago en SAP.
 
-**Ejmplo Python request**
+**Ejemplo Python request**
 
 ```python
 import requests
@@ -561,7 +561,7 @@ payload = {
          "value":207.0
       },
    ]
-}
+  }
   
 }
 
@@ -573,7 +573,7 @@ response = requests.request("POST", url, data=payload, headers=headers)
 
 print(response.text)
 ```
-Como respuesta se obtiene un id unico de la base de datos el cual sera actualizado en Odoo para dejar trazavilidad
+Como respuesta se obtiene un id único de la base de datos el cual sera actualizado en Odoo para dejar trazabilidad
 
 **Ejemplo Respuesta en JSON**
 ```python
@@ -590,13 +590,13 @@ Como respuesta se obtiene un id unico de la base de datos el cual sera actualiza
 - GET /transaction/status/shipping 
 
 ## GET /transaction/status/shipping 
-El metodo retorna el estado de despacho de una orden de venta enviado como parametro en el body.
+El método retorna el estado de despacho de una orden de venta enviado como parámetro en el body.
 Sed espera recibir las siguientes opciones
   - pending
   - delivery_partial
   - delivery
 
-**Ejmplo Python request**
+**Ejemplo Python request**
 
 ```python
 import requests
@@ -635,6 +635,170 @@ Como respuesta se obtiene el estado de despacho de la orden de venta.
      ]
     }], 
   "id_erp": "444567", 
+  "code": "0", 
+  "message": null
+}
+```
+
+
+# IMPORTACION DE FACTURAS Y NOTAS DE CREDITO
+
+- GET /transactions 
+- GET /transaction
+
+## GET /transactions
+El método retorna el listado documentos generados a partir de una fecha enviada.
+
+**Ejmplo Python request**
+
+```python
+import requests
+
+url = "/api/records/transactions"
+
+payload = {
+  "credentials": {
+    "user": "userapi", 
+    "password": "pass_api"
+  }, 
+  "record": {
+    "id": "", 
+    "record_type": "transactions", 
+    "fields": [
+      {"date_from": "2022-05-05"}
+    ]
+   }
+}
+
+headers = {
+    'content-type': "application/json" 
+}
+
+response = requests.request("GET", url, data=payload, headers=headers)
+
+print(response.text)
+```
+Como respuesta se obtiene un listado de listas de precios por sincronizar a Odoo, estos códigos serán utilizados 
+en el llamado del siguiente método. 
+
+**Ejemplo Respuesta en JSON**
+```python
+{
+  "list_data": [{
+    "id": "transactions", 
+    "data": [
+      {id:'34567', "record_type": "invoice"},
+      {id:'34568', "record_type": "creditnote"},
+      {id:'34569', "record_type": "creditnote"},
+    ]}
+  ], 
+  "id_erp": null, 
+  "code": "0", 
+  "message": null
+}
+```
+
+## GET /transaction
+El método retorna en una estructura JSON de cabecera/detalle con la información necesaria para crear el documento comercial en Odoo
+
+**Ejemplo Python request**
+```python
+import requests
+
+url = "/api/records/transaction"
+
+payload = {
+  "credentials": {
+    "user": "userapi", 
+    "password": "pass_api"
+  }, 
+  "record": {
+    "id": "34567", 
+    "record_type": "invoice", 
+    "fields": []
+   }
+}
+
+headers = {
+    'content-type': "application/json" 
+}
+
+response = requests.request("GET", url, data=payload, headers=headers)
+
+print(response.text)
+```
+Como respuesta se obtiene el listado de artículos con su precio. 
+
+**Ejemplo Respuesta en JSON**
+```python
+{
+  "list_data": [{
+    "id": "34567", 
+    "data": [
+          {
+          "id":"34567",
+          "record_type":"invoice",
+          "fields":[
+              {
+                "name":"CardCode",
+                "value":"CL1039"
+              },
+              {
+                "name":"NumAtCard",
+                "value":"S00008"
+              },
+              {
+                "name":"Comments",
+                "value":"S00008"
+              },
+              {
+                "name":"DocDate",
+                "value":"2022-05-26"
+              },
+              {
+                "name":"DocTotal",
+                "value":207.0
+              }
+          ],
+          "sublists":[
+              {
+                "sublist_id":"items",
+                "lines":[
+                    {
+                      "line_id":"items_21",
+                      "fields":[
+                          {
+                            "name":"ItemCode",
+                            "value":"SER0032"
+                          },
+                          {
+                            "name":"Quantity",
+                            "value":1.0,
+                            "type":"float"
+                          },
+                          {
+                            "name":"Price",
+                            "value":180.0,
+                            "type":"float"
+                          },
+                          {
+                            "name":"LineTotal",
+                            "value":180,
+                            "type":"float"
+                          },
+                          {
+                            "name":"TaxCode",
+                            "value":"IVA"
+                          }
+                      ]
+                    }
+                ]
+              }
+          ]
+        }
+     ]
+    }], 
+  "id_erp": "LP PVP", 
   "code": "0", 
   "message": null
 }
