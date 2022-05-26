@@ -397,13 +397,194 @@ Como respuesta se obtiene la información de la deuda y limite de crédito del c
 }
 ```
 
+# ENVIO DE CLIENTE
+
+- POST /customer 
+
+## POST /customer 
+El método recibe una estructura JSON de cabecera/detalle para leer los datos necesarios para crear/actualizar un cliente en SAP.
+Dentro de la misma estructura se puede enviar un detalle de direcciones de entrega, direcciones de facturación y contactos. 
+
+**Ejemplo Python request**
+
+```python
+import requests
+
+url = "/api/customr"
+
+payload = {
+  "credentials": {
+    "user": "userapi", 
+    "password": "pass_api"
+  }, 
+  "record": {
+      "id":"CL1039",
+      "record_type":"customer",
+      "fields":[
+          {
+            "name":"CardType",
+            "value":0,
+            "type":"enum",
+            "enumtype":"BoCardTypes"
+          },
+          {
+            "name":"CardCode",
+            "value":"CL1039"
+          },
+          {
+            "name":"CardName",
+            "value":"Movilway Nicaragua, S.A."
+          },
+          {
+            "name":"LicTradNum",
+            "value":"J0310000189706"
+          },
+          {
+            "name":"E_Mail",
+            "value":""
+          },
+          {
+            "name":"Phone1",
+            "value":""
+          }
+      ],
+      "sublists":[
+          {
+            "sublist_id":"address",
+            "lines":[
+                {
+                  "line_id":"address_1",
+                  "fields":[
+                      {
+                        "name":"AdresType",
+                        "value":"delivery"
+                      },
+                      {
+                        "name":"AddressLabel",
+                        "value":"Managua"
+                      },
+                      {
+                        "name":"Street",
+                        "value":"Semaforos Villa Fontana 1c Este 75mts al Norte, Edificio OPUS III, 3er Nivel."
+                      },
+                      {
+                        "name":"City",
+                        "value":""
+                      },
+                      {
+                        "name":"State",
+                        "value":""
+                      },
+                      {
+                        "name":"Country",
+                        "value":"NI"
+                      }
+                  ]
+                },
+                {
+                  "line_id":"address_1",
+                  "fields":[
+                      {
+                        "name":"AdresType",
+                        "value":"billing"
+                      },
+                      {
+                        "name":"AddressLabel",
+                        "value":"Movilway Nicaragua-Entrega"
+                      },
+                      {
+                        "name":"Street",
+                        "value":"Semaforos Villa Fontana 1c Este 75mts al Norte, Edificio OPUS III, 3er Nivel."
+                      },
+                      {
+                        "name":"City",
+                        "value":""
+                      },
+                      {
+                        "name":"State",
+                        "value":""
+                      },
+                      {
+                        "name":"Country",
+                        "value":"NI"
+                      }
+                  ]
+                }
+            ]
+          },
+          {
+            "sublist_id":"contacts",
+            "lines":[
+                {
+                  "line_id":"contact_1",
+                  "fields":[
+                      {
+                        "name":"Name",
+                        "value":"Roxana Joselyn Rodriguez Gomez"
+                      },
+                      {
+                        "name":"E_MailL",
+                        "value":"rjrodriguezg@movilway.com"
+                      },
+                      {
+                        "name":"Tel1",
+                        "value":"7602-2222"
+                      },
+                      {
+                        "name":"FirstName",
+                        "value":"Roxana"
+                      },
+                      {
+                        "name":"MiddleName",
+                        "value":"Joselyn"
+                      },
+                      {
+                        "name":"LastName",
+                        "value":"Rodriguez Gomez"
+                      },
+                      {
+                        "name":"Position",
+                        "value":"Recursos Humanos"
+                      },
+                      {
+                        "name":"Address",
+                        "value":"Roxana Joselyn Rodriguez Gomez"
+                      }
+                  ]
+                }
+            ]
+          }
+      ]
+    }
+  
+}
+
+headers = {
+    'content-type': "application/json" 
+}
+
+response = requests.request("POST", url, data=payload, headers=headers)
+
+print(response.text)
+```
+Como respuesta se obtiene un id único de la base de datos el cual sera actualizado en Odoo para dejar trazabilidad. 
+Si el cliente se esta creando por primera vez no se envía el campo "id", en caso se le envíe el campo "id" se asumen que el cliente existe y sera actualizado.
+
+**Ejemplo Respuesta en JSON**
+```python
+{ 
+  "id_erp": "CL1039", 
+  "code": "0", 
+  "message": null
+}
+```
 
 # ENVIO DE ORDEN DE VENTA Y FACTURA
 
 - POST /transaction 
 
 ## POST /transaction 
-El método recibe una estructura JSON de cabecera/detalle para enviar los datos necesarios para crear una transacción comercial en SAP.
+El método recibe una estructura JSON de cabecera/detalle para leer los datos necesarios para crear una transacción comercial en SAP.
 Para saber si lo que se envía es una factura o una orden de venta se debe leer el campo  >> "record_type" enviado como parámetro en la petición.
 el cual puede tener los siguiente valores: 
   "saleorder"
@@ -518,7 +699,7 @@ Como respuesta se obtiene un id único de la base de datos el cual sera actualiz
 - POST /payment 
 
 ## POST /payment 
-El método recibe una estructura JSON de cabecera para enviar los datos necesarios para crear una transacción de pago en SAP.
+El método recibe una estructura JSON de cabecera para leer los datos necesarios para crear una transacción de pago en SAP.
 
 **Ejemplo Python request**
 
