@@ -979,7 +979,7 @@ Como respuesta se obtiene el listado de artículos con su precio.
         }
      ]
     }], 
-  "id_erp": "LP PVP", 
+  "id_erp": "34567", 
   "code": "0", 
   "message": null
 }
