@@ -1,15 +1,12 @@
-# AUTHENTICATION 
+# IMPORTACION DE CLIENTES 
 
-- login 
-- logout
+- GET customers 
+- GET customer
 
-In order to be able to access any document an access token needs to generated which serves as 
-session cookies in a regular web language. The token will **be needed** for every subsequent requests.
-Except for */api/auth/token* enpoint that accept **multipart/form-data** as the Content type every other 
-endpoints accept application/json as the 'Content Type'
+##GET customers
+El metodo retorna el listado de clientes que hay que importar a Odoo
 
 Python request
-
 
 ```python
 import requests
@@ -23,7 +20,7 @@ payload = {
   }, 
   "record": {
     "id": "", 
-    "record_type": "customers", 
+    "record_type": "customer", 
     "fields": []
    }
 }
@@ -36,12 +33,8 @@ response = requests.request("GET", url, data=payload, headers=headers)
 
 print(response.text)
 ```
-To retrive an access token these following parameters needs to be set.
-
-* the database name as **db**
-* the connecting username as **login**
-* the user password as **password**
-The above request will return a response like below.
+Como respuesta se obtiene un listado de codigos de clientes por sincronizar a Odoo, estos codigos seran utilizados 
+en el llamado del siguiente metodo. 
 
 ```python
 {
@@ -51,7 +44,53 @@ The above request will return a response like below.
   "message": null
 }
 ```
-The most interesting part of the response is the access token field, *access_token_ebb1914bbdb5622cd782a1a0ff51f81a2cba042a* for every other request the token should to be send along the request headers else an invalid token response will be generated.
+
+##GET customer
+El metodo retorna los datos/campos de un cliente especifico que se envie como parametro en el body.
+
+Python request
+
+```python
+import requests
+
+url = "/api/records/customer"
+
+payload = {
+  "credentials": {
+    "user": "userapi", 
+    "password": "pass_api"
+  }, 
+  "record": {
+    "id": "C001", 
+    "record_type": "customer", 
+    "fields": []
+   }
+}
+
+headers = {
+    'content-type': "application/json" 
+}
+
+response = requests.request("GET", url, data=payload, headers=headers)
+
+print(response.text)
+```
+Como respuesta se obtiene un listado de codigos de clientes por sincronizar a Odoo, estos codigos seran utilizados 
+en el llamado del siguiente metodo. 
+
+```python
+{
+  "list_data": [{
+    "id": "customer", 
+    "data": [
+      {"code":"C001", "name":"Victor Pincay", "email":"prueba@gmail.com", "vat":"12345678"}
+     ]
+    }], 
+  "id_erp": "C001", 
+  "code": "0", 
+  "message": null
+}
+```
 
 # LOGOUT
 
