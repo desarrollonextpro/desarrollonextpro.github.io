@@ -403,8 +403,8 @@ Como respuesta se obtiene la informacion de la deuda y limite de credito del cli
 - POST /transaction 
 
 ## POST /transaction 
-El metodo retorna la informacion de la deuda y limite de credito del cliente.
-Para saber si es una factura o una orde de venta se debe leer el campo  >> "record_type" enviado como parametro en la peticion.
+El metodo recibe una estructura JSON de cabecera/detalle para enviar los datos necesarios para crear una transaccion comercial en SAP.
+Para saber si lo que se envia es una factura o una orden de venta se debe leer el campo  >> "record_type" enviado como parametro en la peticion.
 el cual puede tener los siguiente valores: 
   "saleorder"
   "invoice"
@@ -506,12 +506,81 @@ Como respuesta se obtiene un id unico de la base de datos el cual sera actualiza
 **Ejemplo Respuesta en JSON**
 ```python
 {
-  "list_data": [{
-    "id": "stock", 
-    "data": []
-    }], 
   "id_erp": "34567", 
   "code": "0", 
   "message": null
 }
 ```
+
+
+# ENVIO DE PAGO DE CLIENTE
+
+- POST /payment 
+
+## POST /payment 
+El metodo recibe una estructura JSON de cabecera para enviar los datos necesarios para crear una transaccion de pago en SAP.
+
+**Ejmplo Python request**
+
+```python
+import requests
+
+url = "/api/payment"
+
+payload = {
+  "credentials": {
+    "user": "userapi", 
+    "password": "pass_api"
+  }, 
+  "record": {
+   "id":"S00008",
+   "record_type":"payment",
+   "fields":[
+      {
+         "name":"CardCode",
+         "value":"CL1039"
+      },
+      {
+         "name":"TrsfrRef",
+         "value":"S00008"
+      },
+      {
+         "name":"DocDate",
+         "value":"2022-05-26"
+      },
+      {
+         "name":"TrsfrDate",
+         "value":"2022-05-26"
+      },
+      {
+         "name":"TrsfrAcct",
+         "value":"200045631"
+      },
+      {
+         "name":"TrsfrSum",
+         "value":207.0
+      },
+   ]
+}
+  
+}
+
+headers = {
+    'content-type': "application/json" 
+}
+
+response = requests.request("POST", url, data=payload, headers=headers)
+
+print(response.text)
+```
+Como respuesta se obtiene un id unico de la base de datos el cual sera actualizado en Odoo para dejar trazavilidad
+
+**Ejemplo Respuesta en JSON**
+```python
+{ 
+  "id_erp": "34567", 
+  "code": "0", 
+  "message": null
+}
+```
+
