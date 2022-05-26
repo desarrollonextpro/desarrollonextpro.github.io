@@ -6,7 +6,7 @@
 ## GET /customers
 El metodo retorna el listado de clientes que hay que importar a Odoo
 
-**Ejmplo Python request
+**Ejmplo Python request**
 
 ```python
 import requests
@@ -36,7 +36,7 @@ print(response.text)
 Como respuesta se obtiene un listado de codigos de clientes por sincronizar a Odoo, estos codigos seran utilizados 
 en el llamado del siguiente metodo. 
 
-**Ejemplo Respuesta en JSON
+**Ejemplo Respuesta en JSON**
 ```python
 {
   "list_data": [{"id": "customers", "data": ['C001','C002','C003']}], 
@@ -49,7 +49,7 @@ en el llamado del siguiente metodo.
 ## GET /customer
 El metodo retorna los datos/campos de un cliente especifico que se envie como parametro en el body.
 
-**Ejemplo Python request
+**Ejemplo Python request**
 ```python
 import requests
 
@@ -77,7 +77,7 @@ print(response.text)
 ```
 Como respuesta se obtiene los campos del cliente que deben ser registrados en el cliente que se consultando para sincronizar a Odoo
 
-**Ejemplo Respuesta en JSON
+**Ejemplo Respuesta en JSON**
 ```python
 {
   "list_data": [{
