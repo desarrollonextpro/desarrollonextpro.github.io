@@ -1,5 +1,5 @@
 # API PARA NEXTCONNECTOR
-El siguiente documento pretende detallar las APIS que tiene el NextConnector del lado de SAP para la comunicación con Odoo.
+El siguiente documento pretende detallar  las APIS de SAP S/4 HANA que necesita el conector de Odoo para el correcto funcionamiento de la integración.
 
 # CLIENTES 
 
@@ -78,7 +78,7 @@ response = requests.request("GET", url, data=payload, headers=headers)
 
 print(response.text)
 ```
-Como respuesta se obtiene los campos del cliente que deben ser registrados en el cliente que se consultando para sincronizar a Odoo
+Como respuesta se obtiene los campos del cliente que deben ser registrados en el cliente que se está consultando para sincronizar a Odoo
 
 **Ejemplo Respuesta en JSON**
 ```python
@@ -147,7 +147,7 @@ en el llamado del siguiente método.
 ```
 
 ## GET /item
-El método retorna los datos/campos de un artículos especifico que se envíen como parámetro en el body.
+El método retorna los datos/campos de un artículo especifico que se envíen como parámetro en el body.
 
 **Ejemplo Python request**
 ```python
@@ -199,7 +199,7 @@ Como respuesta se obtiene los campos del articulo que deben ser registrados en O
 - GET /stock 
 
 ## GET /stock
-El método retorna el lista de artículos con su cantidad de stock disponible
+El método retorna el listado de artículos con su cantidad de stock disponible
 
 **Ejemplo Python request**
 
