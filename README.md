@@ -189,16 +189,13 @@ Como respuesta se obtiene los campos del articulo que deben ser registrados en O
                "name":"\"LLANTA 19\"\"X8 7 RALLOS DOBLES DISC IV\"",
                "description_sale":"\"LLANTA 19\"\"X8 7 RALLOS DOBLES DISC IV\"",
                "taxes_id":"IVA",
-               "x_studio_unidad_de_medida_sap":"-1",
-               "dr_brand_id":"LAND ROVER",
-               "x_studio_categoria":"Carroceria",
-               "x_studio_sub_categoria":"Llantas",
-               "x_studio_sub_categoria_2":"",
-               "x_studio_tiene_variante":"SI",
-               "x_studio_atributos":"MARCA||LAND ROVER|||MODELO VEHICULO||DISCOVERY 4|||TIPO DE MOTOR||x|||VERSION||x|||A\u00d1O||x|||",
-               "type":"product",
-               "invoice_policy":"order",
-               "inventory_availability":"always"
+               "brand_id":"LAND ROVER",
+               "categoria":"Carroceria",
+               "sub_categoria":"Llantas",
+               "sub_categoria_2":"",
+               "tiene_variante":"SI",
+               "atributos":"MARCA||LAND ROVER|||MODELO VEHICULO||DISCOVERY 4|||TIPO DE MOTOR||x|||VERSION||x|||A\u00d1O||x|||",
+               "type":"product"
             }
          ]
       }
