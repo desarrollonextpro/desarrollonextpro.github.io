@@ -180,15 +180,32 @@ Como respuesta se obtiene los campos del articulo que deben ser registrados en O
 **Ejemplo Respuesta en JSON**
 ```python
 {
-  "list_data": [{
-    "id": "item", 
-    "data": [
-      {"code":"SKU001", "name":"PC DELL", "price":100, "category":"computers"}
-     ]
-    }], 
-  "id_erp": "SKU001", 
-  "code": "0", 
-  "message": null
+   "list_data":[
+      {
+         "id":"items",
+         "data":[
+            {
+               "nxt_id_erp":"LLR050886",
+               "name":"\"LLANTA 19\"\"X8 7 RALLOS DOBLES DISC IV\"",
+               "description_sale":"\"LLANTA 19\"\"X8 7 RALLOS DOBLES DISC IV\"",
+               "taxes_id":"IVA",
+               "x_studio_unidad_de_medida_sap":"-1",
+               "dr_brand_id":"LAND ROVER",
+               "x_studio_categoria":"Carroceria",
+               "x_studio_sub_categoria":"Llantas",
+               "x_studio_sub_categoria_2":"",
+               "x_studio_tiene_variante":"SI",
+               "x_studio_atributos":"MARCA||LAND ROVER|||MODELO VEHICULO||DISCOVERY 4|||TIPO DE MOTOR||x|||VERSION||x|||A\u00d1O||x|||",
+               "type":"product",
+               "invoice_policy":"order",
+               "inventory_availability":"always"
+            }
+         ]
+      }
+   ],
+   "id_erp":null,
+   "code":"0",
+   "message":null
 }
 ```
 
